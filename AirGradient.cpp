@@ -80,6 +80,22 @@ void AirGradient::PMS_Init(int rx_pin,int tx_pin,int baudRate){
   
 }
 
+AirGradient::DATA AirGradient::getPM_Raw(){
+  DATA data;
+  requestRead();
+  if (readUntil(data)) {
+    return data;
+  } else {
+    data.PM_SP_UG_1_0 = 0;
+    data.PM_SP_UG_2_5 = 0;
+    data.PM_SP_UG_10_0 = 0;
+    data.PM_AE_UG_1_0 = 0;
+    data.PM_AE_UG_2_5 = 0;
+    data.PM_AE_UG_10_0 = 0;
+    return data;
+  }
+}
+
 const char* AirGradient::getPM1(){
   if (getPM1_Raw()) {
     int result_raw = getPM1_Raw();

@@ -70,19 +70,21 @@ void loop(){
   String payload = "{\"wifi\":" + String(WiFi.RSSI()) + ",";
 
   if (hasPM) {
-    int PM1 = ag.getPM1_Raw();
+    AirGradient::DATA pm = ag.getPM_Raw();
+
+    int PM1 = pm.PM_AE_UG_1_0;
     payload=payload+"\"pm01\":" + String(PM1);
     showTextRectangle("PM1",String(PM1),false);
     delay(3000);
 
-    int PM2 = ag.getPM2_Raw();
+    int PM2 = pm.PM_AE_UG_2_5;
     payload=payload+"\"pm02\":" + String(PM2);
     showTextRectangle("PM2",String(PM2),false);
     delay(3000);
 
-    int PM10 = ag.getPM10_Raw();
+    int PM10 = pm.PM_AE_UG_10_0;
     payload=payload+"\"pm10\":" + String(PM10);
-    showTextRectangle("PM10",String(PM2),false);
+    showTextRectangle("PM10",String(PM10),false);
     delay(3000);
   }
 
