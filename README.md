@@ -1,8 +1,8 @@
 AirGradient Arduino Library for ESP8266 (Wemos D1 MINI)
 =====================================================================================================
 
-Build your own low cost air quality sensor with optional display measuring PM2.5, CO2, Temperature and Humidity. 
+This is a fork of [https://github.com/airgradienthq/arduino](https://github.com/airgradienthq/arduino).
 
-This library makes it easy to read the sensor data from the Plantower PMS5003 PM2.5 sensor, the Senseair S8 and the SHT30/31 Temperature and Humidity sensor. Visit our DIY section for detailed build instructions and PCB layout.
+It adds support for PM1 and PM10.
 
-https://www.airgradient.com/diy/
+Please see [https://github.com/airgradienthq/arduino](https://github.com/airgradienthq/arduino) for more details.

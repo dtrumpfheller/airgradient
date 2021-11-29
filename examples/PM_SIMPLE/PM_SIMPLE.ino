@@ -26,9 +26,21 @@ void setup(){
 
 void loop(){
     
+int PM1 = ag.getPM1_Raw();
+Serial.print("PM1: ");
+Serial.println(ag.getPM1());
+
+delay(5000);
+
 int PM2 = ag.getPM2_Raw();
 Serial.print("PM2: ");
 Serial.println(ag.getPM2());
+
+delay(5000);
+
+int PM10 = ag.getPM10_Raw();
+Serial.print("PM10: ");
+Serial.println(ag.getPM10());
 
 delay(5000);
 }

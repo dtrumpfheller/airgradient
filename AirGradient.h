@@ -197,8 +197,12 @@ class AirGradient
     void requestRead();
     bool read_PMS(DATA& data);
     bool readUntil(DATA& data, uint16_t timeout = SINGLE_RESPONSE_TIME);
-    const char* getPM2();
-    int getPM2_Raw();
+    const char* getPM1();
+	const char* getPM2();
+	const char* getPM10();
+    int getPM1_Raw();
+	int getPM2_Raw();
+	int getPM10_Raw();
 
     //PMS VARIABLES PUBLIC_END
 
@@ -264,7 +268,9 @@ class AirGradient
     uint16_t _calculatedChecksum;
     SoftwareSerial *_SoftSerial_PMS;
     void loop();
-    char Char_PM2[10];
+    char Char_PM1[10];
+	char Char_PM2[10];
+	char Char_PM10[10];
     //PMS VARIABLES PRIVATE END
 
     //TMP_RH VARIABLES PRIVATE START

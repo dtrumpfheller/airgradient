@@ -70,9 +70,19 @@ void loop(){
   String payload = "{\"wifi\":" + String(WiFi.RSSI()) + ",";
 
   if (hasPM) {
+    int PM1 = ag.getPM1_Raw();
+    payload=payload+"\"pm01\":" + String(PM1);
+    showTextRectangle("PM1",String(PM1),false);
+    delay(3000);
+
     int PM2 = ag.getPM2_Raw();
     payload=payload+"\"pm02\":" + String(PM2);
     showTextRectangle("PM2",String(PM2),false);
+    delay(3000);
+
+    int PM10 = ag.getPM10_Raw();
+    payload=payload+"\"pm10\":" + String(PM10);
+    showTextRectangle("PM10",String(PM2),false);
     delay(3000);
   }
 
@@ -94,9 +104,10 @@ void loop(){
 
    payload=payload+"}";
 
+  Serial.println(payload);
+
   // send payload
   if (connectWIFI){
-  Serial.println(payload);
   String POSTURL = APIROOT + "sensors/airgradient:" + String(ESP.getChipId(),HEX) + "/measures";
   Serial.println(POSTURL);
   WiFiClient client;
