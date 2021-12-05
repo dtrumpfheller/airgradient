@@ -53,7 +53,7 @@ const String ORGANIZATION = "home";
 const String BUCKET = "airgradient";
 const String TOKEN = "TOKEN";
 const String MEASUREMENT = "airgradient";
-const String TAGS = "location='Living\\ Room'";
+const String TAGS = "location=Living\\ Room";
 
 void setup(){
   Serial.begin(9600);
