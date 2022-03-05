@@ -676,25 +676,21 @@ const char* AirGradient::getCO2(int retryLimit) {
 int AirGradient::getCO2_Raw(){
   const byte CO2Command[] = {0xFE, 0X44, 0X00, 0X08, 0X02, 0X9F, 0X25};
   byte CO2Response[] = {0,0,0,0,0,0,0};
-
-  _SoftSerial_CO2->write(CO2Command, 7);
-  delay(100);  //give the sensor a bit of time to respond
-
-  if (_SoftSerial_CO2->available()){
-    for (int i=0; i < 7; i++) {
-      int byte = _SoftSerial_CO2->read();
-      CO2Response[i] = byte;
-      if (CO2Response[0] != 254) {
-        return -1;  //error code for debugging
+  int datapos = -1;
+  while (datapos == -1) {
+    _SoftSerial_CO2->write(CO2Command, 7);
+    delay(100);
+    int bytesinbuffer = _SoftSerial_CO2->available();
+    for (int i=0; i < bytesinbuffer; i++) {
+      delay(25);
+      CO2Response[i] = _SoftSerial_CO2->read();
+      if ((CO2Response[i] == 0xFE) && (datapos == -1)){
+        datapos = i;
       }
     }
-    unsigned long val = CO2Response[3]*256 + CO2Response[4];
-    return val;
   }
-  else
-  {
-  return -2; //error code for debugging
-  }
+  unsigned long val = CO2Response[datapos + 3] * 256 + CO2Response[datapos + 4];  
+  return val;
 }
 
 //END CO2 FUNCTIONS //
